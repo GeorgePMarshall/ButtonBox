@@ -10,7 +10,9 @@
 #define BUTT_1_KEY KEY_KP_1
 #define BUTT_2_KEY KEY_KP_2
 #define BUTT_3_KEY KEY_KP_3
-#define BUTT_4_KEY KEY_KP_4
+#define BUTT_4_KEY KEY_KP_4 
+
+#define PRINT_SOURCE_LINK true //if true button 4 ignores its assigned key and prints the link to the source code
 
 //delays in ms to change how fast each component updates
 #define DISPLAY_UPDATE_DELAY    200
@@ -151,9 +153,12 @@ void UpdateButtons()
 
         if(button4State != button4PreviousState && button4State == LOW)
         {
-            Keyboard.write(BUTT_4_KEY);
+            if(PRINT_SOURCE_LINK)
+                Keyboard.print("https://github.com/GeorgePMarshall/ButtonBox");
+            else
+                Keyboard.write(BUTT_4_KEY);
         }
-  
+        
         flightSwitchPreviousState = flightSwitchState;
         button1PreviousState = button1State;
         button2PreviousState = button2State;
